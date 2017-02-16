@@ -1,0 +1,11 @@
+{
+  "name": "redux-training",
+  "version": "1.0.0",
+  "description": "Proyecto para el aprendizaje de uso de la libreria Redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@maomuriel",
+  "license": "ISC"
+}
