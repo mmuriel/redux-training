@@ -3,29 +3,7 @@ import React from 'react';
 
 
 class AppControlQty extends React.Component{
-
-	handleClickLess(){
-
-		let tmpQtyPrg = this.props.qtyProgramas - 1;
-		this.setState({
-
-			qtyProgramas: tmpQtyPrg
-
-		});
-
-	}
-
-
-	handleClickAdd(){
-
-		let tmpQtyPrg = this.props.qtyProgramas + 1;
-		this.setState({
-
-			qtyProgramas: tmpQtyPrg
-
-		});
-
-	}
+	
 
 	render(){
 
@@ -33,7 +11,7 @@ class AppControlQty extends React.Component{
 		return <div>
 			Mostrar <span>{this.props.qtyProgramas}</span> 
 			<p>
-			<button onClick={this.handleClickAdd}>+</button><button onClick={this.handleClickLess}>-</button>
+			<button onClick={this.props.handleClickAdd}>+</button><button onClick={this.props.handleClickLess}>-</button>
 			</p>
 		</div>;
 

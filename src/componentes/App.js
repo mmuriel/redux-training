@@ -6,6 +6,11 @@ import AppContent from './AppContent.js';
 
 class App extends React.Component{
 
+	constructor(props) {
+		super(props);
+		this.handleClickAdd = this.handleClickAdd.bind(this);
+		this.handleClickLess = this.handleClickLess.bind(this);
+	}
 
 	componentWillMount() {
 
@@ -64,12 +69,34 @@ class App extends React.Component{
 			
 	}
 
+	handleClickLess(){
+
+		let tmpQtyPrg = this.state.qtyProgramas - 1;
+		this.setState({
+
+			qtyProgramas: tmpQtyPrg
+
+		});
+
+	}
+
+
+	handleClickAdd(){
+
+		let tmpQtyPrg = this.state.qtyProgramas + 1;
+		this.setState({
+
+			qtyProgramas: tmpQtyPrg
+
+		});
+
+	}
 
 	render(){
 
 
 		return	<div className="AppMain">
-				<AppHeader qtyProgramas={this.state.qtyProgramas} />
+				<AppHeader qtyProgramas={this.state.qtyProgramas} handleClickLess={this.handleClickLess} handleClickAdd={this.handleClickAdd} />
 				<AppContent programas={this.state.programas} qtyProgramas={this.state.qtyProgramas} />
 			</div>;
 
