@@ -30,7 +30,7 @@ class AppContent extends React.Component{
 			if (i < this.props.qtyProgramas){
 
 				//let tmpPrg = ((programa) => {return <Programa titulo={programa.nombre} desc={programa.desc} hora={programa.hora} />})(programa);
-				let tmpPrg = <Programa titulo={programa.nombre} desc={programa.desc} hora={programa.hora} />;	
+				let tmpPrg = <Programa nombre={programa.nombre} desc={programa.desc} hora={programa.hora} />;	
 				console.log(tmpPrg);
 				prgs.push(tmpPrg);
 			}

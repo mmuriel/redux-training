@@ -2,20 +2,51 @@
 import React from 'react';
 import AppHeader from './AppHeader.js';
 import AppContent from './AppContent.js';
+import ActionsGenerator from '../actions/actions.js';
+
+/* Redux dependencies */
+import store from '../store/store.js';
  
 
 class App extends React.Component{
 
 	constructor(props) {
 		super(props);
-		this.handleClickAdd = this.handleClickAdd.bind(this);
-		this.handleClickLess = this.handleClickLess.bind(this);
+		//this.handleClickAdd = this.handleClickAdd.bind(this);
+		//this.handleClickLess = this.handleClickLess.bind(this);
+
+
+		this.handleChangeState = this.handleChangeState.bind(this);
+		this.actionGenerators = new ActionsGenerator();
+		store.subscribe(this.handleChangeState);
+		//console.log(this.actionGenerators.addProgram("MM","20:55","Esta es la descripcion del programa..."));
+		//console.log(store);
+		//------------------------------------------------------
+		//Inicializa el State a travéz del store
+		
+		
+	}
+
+
+	handleFirstChangeState(){
+
+		this.state = store.getState();
+		console.log("Operando desde App.js:80");
+		console.table(this.state);
+
+	}
+
+	handleChangeState(){
+
+		this.setState(store.getState());
+	
+
 	}
 
 	componentWillMount() {
 
-		this.state = {
-			programas: [
+		
+		store.dispatch(this.actionGenerators.startApp({programas: [
 				{
 					nombre: "Titulo programa #1",
 					hora: "8:30",
@@ -62,41 +93,24 @@ class App extends React.Component{
 					desc: "La gran suerte de la humanidad es que existe una correlación significativa entre la inteligencia y la moralidad, incluida la buena voluntad con los semejantes... En consecuencia nuestros superiores en capacidad son en promedio nuestros benefactores y a menudo es mas seguro confiar nuestros intereses a ellos que a nosotros mismos.",
 				},
 			],
-			qtyProgramas: 7,
-		}
-
-		console.log(this.state);
+			qtyProgramas:3
+			}));
 			
 	}
 
-	handleClickLess(){
 
-		let tmpQtyPrg = this.state.qtyProgramas - 1;
-		this.setState({
-
-			qtyProgramas: tmpQtyPrg
-
-		});
-
-	}
-
-
-	handleClickAdd(){
-
-		let tmpQtyPrg = this.state.qtyProgramas + 1;
-		this.setState({
-
-			qtyProgramas: tmpQtyPrg
-
-		});
+	componentDidMount() {
+		
+		this.handleChangeState();
 
 	}
 
 	render(){
 
 
+
 		return	<div className="AppMain">
-				<AppHeader qtyProgramas={this.state.qtyProgramas} handleClickLess={this.handleClickLess} handleClickAdd={this.handleClickAdd} />
+				<AppHeader store={store} qtyProgramas={this.state.qtyProgramas} />
 				<AppContent programas={this.state.programas} qtyProgramas={this.state.qtyProgramas} />
 			</div>;
 

@@ -11,7 +11,7 @@ class AppHeader extends React.Component{
 
 		return <header className="AppHeader">
 				<h1>Programación</h1>
-				<AppControlQty qtyProgramas={this.props.qtyProgramas} handleClickLess={this.props.handleClickLess} handleClickAdd={this.props.handleClickAdd} />
+				<AppControlQty store={this.props.store} qtyProgramas={this.props.qtyProgramas} />
 			</header>;
 
 	}
